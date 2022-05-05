@@ -1,0 +1,7 @@
+Package: numerocorrido
+Title: Converter valores numericos para os equivalentes por extenso
+Version: 0.0.1.0
+Authors@R: c(person("Joao Resende", role= c("aut", "cre"), email = "joaoluciomatosresende@gmail.com"))
+Author: Joao Resende
+RoxygenNote: 7.1.2
+Encoding: UTF-8
