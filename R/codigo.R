@@ -216,10 +216,10 @@ if (!is.na(decimal)){
      if(moeda == TRUE){
        if(is.na(decimal)){
 
-       resposta_final <- paste0(resposta_final, " reais ")
+       resposta_final <- paste0(resposta_final, "reais ")
        }else{
 
-         resposta_final <- paste0(resposta_final, " reais e ", nomes_decimal, " centavos")
+         resposta_final <- paste0(resposta_final, "reais e ", nomes_decimal, " centavos")
        }
 
      }else{
@@ -238,4 +238,3 @@ if (!is.na(decimal)){
 
 }
 
-extenso(458974569874562148.98, TRUE)
