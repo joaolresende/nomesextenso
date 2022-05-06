@@ -208,9 +208,9 @@ if (!is.na(decimal)){
      }else if (tamanho_resposta == 3){
        if(nomes_numeros[3] != "um"){
 
-       resposta_final <- paste0(nomes_numeros[3], " milhoes " ,nomes_numeros[2], " mil ", nomes_numeros[1])
+       resposta_final <- paste0(nomes_numeros[3], " milhões " ,nomes_numeros[2], " mil ", nomes_numeros[1])
        }else{
-         resposta_final <- paste0(nomes_numeros[3], " milhao " ,nomes_numeros[2], " mil ", nomes_numeros[1])
+         resposta_final <- paste0(nomes_numeros[3], " milhão " ,nomes_numeros[2], " mil ", nomes_numeros[1])
 
        }
 
@@ -218,19 +218,19 @@ if (!is.na(decimal)){
      }else if (tamanho_resposta == 4){
        if(nomes_numeros[4] != "um"){
          if(nomes_numeros[3] != "um"){
-         resposta_final <- paste0(nomes_numeros[4], " bilhoes " , nomes_numeros[3], " milhoes " ,nomes_numeros[2], " mil ", nomes_numeros[1])
+         resposta_final <- paste0(nomes_numeros[4], " bilhões " , nomes_numeros[3], " milhões " ,nomes_numeros[2], " mil ", nomes_numeros[1])
          }else{
 
-           resposta_final <- paste0(nomes_numeros[4], " bilhao " , nomes_numeros[3], " milhao " ,nomes_numeros[2], " mil ", nomes_numeros[1])
+           resposta_final <- paste0(nomes_numeros[4], " bilhão " , nomes_numeros[3], " milhão " ,nomes_numeros[2], " mil ", nomes_numeros[1])
 
          }
        }else{
 
          if(nomes_numeros[3] != "um"){
-           resposta_final <- paste0(nomes_numeros[4], " bilhoes " , nomes_numeros[3], " milhoes " ,nomes_numeros[2], " mil ", nomes_numeros[1])
+           resposta_final <- paste0(nomes_numeros[4], " bilhões " , nomes_numeros[3], " milhões " ,nomes_numeros[2], " mil ", nomes_numeros[1])
          }else{
 
-           resposta_final <- paste0(nomes_numeros[4], " bilhao " , nomes_numeros[3], " milhao " ,nomes_numeros[2], " mil ", nomes_numeros[1])
+           resposta_final <- paste0(nomes_numeros[4], " bilhão " , nomes_numeros[3], " milhão " ,nomes_numeros[2], " mil ", nomes_numeros[1])
 
          }
        }
