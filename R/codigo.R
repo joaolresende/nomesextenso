@@ -27,7 +27,6 @@ extenso <- function(numero_pre, moeda){
     stringsAsFactors = F
   )
 
-
     if(stringr::str_detect(numero_pre, "[.]")){
 
 
@@ -112,28 +111,14 @@ decima_functionl <- function(decimal, excessoes, numeros){
 
 }
 
-nomes_numeros_pre[[1]] <- decima_functionl(decimal, excessoes, numeros)
+nomes_decimal <- decima_functionl(decimal, excessoes, numeros)
 
-
-     for (i in 1:ceiling(tamanho_numero/3)) {
-
-       inicio <-rodada
-
-       final <- ifelse(inicio-(2) < 1, 1, inicio-(2))
-
-     vetor_atual <-  posicao_vetor[inicio:final]
-     teste_vetor <- vetor_atual
-
-     rodada <- final - 1
-
-     nomes_numeros_pre[[i+1]] <- nome_numeros_interno(vetor_atual, excessoes, numeros)
-     }
 
 numeros_concat <- function(nomes_numeros_pre){
   nomes_numeros_pos <- nomes_numeros_pre[!is.na(nomes_numeros_pre)]
-   if(length(nomes_numeros_pos)>1){
+  if(length(nomes_numeros_pos)>1){
 
-     nome_numero <- paste(rev(nomes_numeros_pos), collapse = " e ")
+    nome_numero <- paste(rev(nomes_numeros_pos), collapse = " e ")
 
   }else{
 
@@ -143,17 +128,26 @@ numeros_concat <- function(nomes_numeros_pre){
   return(nome_numero)
 }
 
-tamanho_concatenado <- length(nomes_numeros_pre)
 
-  for (i in (tamanho_concatenado-1):1) {
+     for (i in 1:ceiling(tamanho_numero/3)) {
 
-    nomes_numeros[[i]] <- numeros_concat(nomes_numeros_pre[[i+1]])
+              inicio <-rodada
 
-  }
+       final <- ifelse(inicio-(2) < 1, 1, inicio-(2))
+
+     vetor_atual <-  posicao_vetor[inicio:final]
+     teste_vetor <- vetor_atual
+
+     rodada <- final - 1
+
+     nomes_numeros[[i]] <- numeros_concat(nome_numeros_interno(vetor_atual, excessoes, numeros))
+     }
+
 
 if (!is.na(decimal)){
-  nomes_decimal <- numeros_concat(nomes_numeros_pre[[1]])
+  nomes_decimal <- numeros_concat(nomes_decimal)
 }
+
 
      tabela_nomes_completos <- as.data.frame(nomes_numeros) |>
        tidyr::pivot_longer(cols = everything(), names_to = "numeros")|>
