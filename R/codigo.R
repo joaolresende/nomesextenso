@@ -13,7 +13,6 @@
 
 extenso <- function(numero_pre, moeda){
 
-
   excessoes <- data.frame(
     num = c(0,11:19),
     nome = c("zero","onze", "doze", "treze", "catorze", "quinze", "dezesseis", "dezessete", "dezoito", "dezenove"),
@@ -54,16 +53,10 @@ extenso <- function(numero_pre, moeda){
 
   posicao_vetor <- unlist(stringr::str_split(numero, ""))
 
-  nome_numero <- c()
   nomes_numeros_pre <- c()
-
-
-  if(numero %in% excessoes$num){
-    return(excessoes$nome[excessoes$num == numero])
-  }else{
-     nome_numero<- c()
-     nomes_numeros <- c()
-     rodada <- tamanho_numero
+  nome_numero<- c()
+  nomes_numeros <- c()
+  rodada <- tamanho_numero
 
 nome_numeros_interno <- function(vetor_atual, excessoes, numeros){
 
@@ -137,7 +130,6 @@ nomes_numeros_pre[[1]] <- decima_functionl(decimal, excessoes, numeros)
 
 
 nomeros_concat <- function(nomes_numeros_pre){
-
 
   numero_1 <- nomes_numeros_pre[3]
   numero_2 <- nomes_numeros_pre[2]
@@ -267,7 +259,7 @@ if (!is.na(decimal)){
 
   return(resposta_final)
 
-  }
+  # }
   }
 
 }
