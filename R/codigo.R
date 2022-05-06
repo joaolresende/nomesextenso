@@ -46,6 +46,12 @@ extenso <- function(numero_pre, moeda){
 
   tamanho_numero <- stringr::str_length(numero)
 
+  if(tamanho_numero > 18){
+
+    print("Número fora do alcance: Limite 999 quatrilhões")
+
+  }else{
+
   posicao_vetor <- unlist(stringr::str_split(numero, ""))
 
   nomes_numeros_pre <- c()
@@ -228,8 +234,8 @@ if (!is.na(decimal)){
 
   return(resposta_final)
 
-
+}
 
 }
 
-extenso(1598798.45, TRUE)
+extenso(458974569874562148.98, TRUE)
