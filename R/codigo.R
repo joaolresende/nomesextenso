@@ -44,11 +44,6 @@ extenso <- function(numero_pre, moeda){
       numero <- numero_pre
     }
 
-  if(nchar(numero_pre) > 12){
-    print("Numero fora do alcance, tente um numero menor")
-
-  } else{
-
   tamanho_numero <- stringr::str_length(numero)
 
   posicao_vetor <- unlist(stringr::str_split(numero, ""))
@@ -192,51 +187,25 @@ if (!is.na(decimal)){
   nomes_decimal <- nomeros_concat(nomes_numeros_pre[[1]])
 }
 
+     tabela_nomes_completos <- as.data.frame(nomes_numeros) |>
+       tidyr::pivot_longer(cols = everything(), names_to = "numeros")|>
+       dplyr::rename("nomes" = 1) |>
+       dplyr::mutate("ID" = dplyr::row_number()) |>
+       dplyr::mutate("qualificador" = dplyr::case_when(ID == 1 ~ "",
+                                                       ID == 2 ~ "mil",
+                                                       ID == 3 & value != "um" ~ "milhões",
+                                                       ID == 3 & value == "um" ~ "milhão",
+                                                       ID == 4 & value != "um" ~ "bilhões",
+                                                       ID == 4 & value == "um" ~ "bilhão",
+                                                       ID == 5 & value != "um" ~ "trilhões",
+                                                       ID == 5 & value == "um" ~ "trilhão",
+                                                       ID == 6 & value != "um" ~ "quatrilhões",
+                                                       ID == 6 & value == "um" ~ "quatrilhão"))|>
+       dplyr::mutate(nome_completo = paste0(value, sep = " ", qualificador))|>
+       dplyr::select(nome_completo)
 
+     resposta_final<- paste(rev(tabela_nomes_completos$nome_completo), collapse = " ")
 
-     nome_numero_final <- c()
-     tamanho_resposta <- length(nomes_numeros)
-
-     if (tamanho_resposta == 1) {
-
-       resposta_final <- nomes_numeros[1]
-
-     }else if (tamanho_resposta == 2){
-
-       resposta_final <- paste0(nomes_numeros[2], " mil ", nomes_numeros[1])
-
-     }else if (tamanho_resposta == 3){
-       if(nomes_numeros[3] != "um"){
-
-       resposta_final <- paste0(nomes_numeros[3], " milhões " ,nomes_numeros[2], " mil ", nomes_numeros[1])
-       }else{
-         resposta_final <- paste0(nomes_numeros[3], " milhão " ,nomes_numeros[2], " mil ", nomes_numeros[1])
-
-       }
-
-
-     }else if (tamanho_resposta == 4){
-       if(nomes_numeros[4] != "um"){
-         if(nomes_numeros[3] != "um"){
-         resposta_final <- paste0(nomes_numeros[4], " bilhões " , nomes_numeros[3], " milhões " ,nomes_numeros[2], " mil ", nomes_numeros[1])
-         }else{
-
-           resposta_final <- paste0(nomes_numeros[4], " bilhão " , nomes_numeros[3], " milhão " ,nomes_numeros[2], " mil ", nomes_numeros[1])
-
-         }
-       }else{
-
-         if(nomes_numeros[3] != "um"){
-           resposta_final <- paste0(nomes_numeros[4], " bilhões " , nomes_numeros[3], " milhões " ,nomes_numeros[2], " mil ", nomes_numeros[1])
-         }else{
-
-           resposta_final <- paste0(nomes_numeros[4], " bilhão " , nomes_numeros[3], " milhão " ,nomes_numeros[2], " mil ", nomes_numeros[1])
-
-         }
-       }
-
-
-     }
 
      if(moeda == TRUE){
        if(is.na(decimal)){
@@ -259,9 +228,8 @@ if (!is.na(decimal)){
 
   return(resposta_final)
 
-  # }
-  }
+
 
 }
 
-
+extenso(1598798.45, TRUE)
