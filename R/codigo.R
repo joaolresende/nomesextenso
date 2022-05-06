@@ -193,4 +193,3 @@ if (!is.na(decimal)){
 }
 
 }
-extenso(204484.89, TRUE)
