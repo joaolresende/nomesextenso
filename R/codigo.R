@@ -129,68 +129,30 @@ nomes_numeros_pre[[1]] <- decima_functionl(decimal, excessoes, numeros)
      nomes_numeros_pre[[i+1]] <- nome_numeros_interno(vetor_atual, excessoes, numeros)
      }
 
+numeros_concat <- function(nomes_numeros_pre){
+  nomes_numeros_pos <- nomes_numeros_pre[!is.na(nomes_numeros_pre)]
+   if(length(nomes_numeros_pos)>1){
 
-nomeros_concat <- function(nomes_numeros_pre){
+     nome_numero <- paste(rev(nomes_numeros_pos), collapse = " e ")
 
-  numero_1 <- nomes_numeros_pre[3]
-  numero_2 <- nomes_numeros_pre[2]
-  numero_3 <- nomes_numeros_pre[1]
+  }else{
 
+    nome_numero <-nomes_numeros_pos
+  }
 
-      if(is.na(numero_1)){
-
-       if(is.na(numero_2)){
-
-         nomes_numeros <-   paste0(numero_3)
-
-       }else if(is.na(numero_3)){
-
-         nomes_numeros <-   paste0(numero_2)
-         }else{
-
-         nomes_numeros <- paste0(numero_2, " e ", numero_3)
-       }
-
-       }else if(is.na(numero_2)) {
-
-         if(is.na(numero_1)){
-
-           nomes_numeros <- paste0(numero_3)
-
-         }else{
-
-           nomes_numeros <- paste0(numero_1, " e ", numero_3)
-
-         }
-       }else if(is.na(numero_3)){
-         if(is.na(numero_1)){
-
-           nomes_numeros <-paste0(numero_2)
-
-         }else{
-
-           nomes_numeros <- paste0(numero_1, " e ", numero_2)
-
-            }
-         }else{
-
-           nomes_numeros <- paste0(numero_1, " e ", numero_2, " e ", numero_3)
-
-         }
-
-  return(nomes_numeros)
+  return(nome_numero)
 }
 
 tamanho_concatenado <- length(nomes_numeros_pre)
 
   for (i in (tamanho_concatenado-1):1) {
 
-    nomes_numeros[[i]] <- nomeros_concat(nomes_numeros_pre[[i+1]])
+    nomes_numeros[[i]] <- numeros_concat(nomes_numeros_pre[[i+1]])
 
   }
 
 if (!is.na(decimal)){
-  nomes_decimal <- nomeros_concat(nomes_numeros_pre[[1]])
+  nomes_decimal <- numeros_concat(nomes_numeros_pre[[1]])
 }
 
      tabela_nomes_completos <- as.data.frame(nomes_numeros) |>
@@ -237,4 +199,4 @@ if (!is.na(decimal)){
 }
 
 }
-
+extenso(204484.89, TRUE)
